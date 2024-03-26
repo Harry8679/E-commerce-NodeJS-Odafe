@@ -6,11 +6,11 @@ const home = (req, res) => {
 
 const postUser = (req, res) => {
     const errors = validationResult(req);
-    console.log(req.body);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
-    res.send('User Post Route');
+    
+    return res.send('User Post Route Test');
 }
 
 module.exports = { home, postUser };
