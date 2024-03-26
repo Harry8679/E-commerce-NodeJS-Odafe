@@ -3,12 +3,14 @@ const app = express();
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/user.route');
+const productRoutes = require('./routes/product.route');
 
 connectDB();
 
 dotenv.config();
 
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/products', productRoutes);
 
 const port = process.env.PORT || 5800;
 
