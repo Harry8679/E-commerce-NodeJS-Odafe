@@ -1,5 +1,6 @@
 const User = require('../models/user.model');
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 const home = (req, res) => {
     res.send('Hello from Controller');
@@ -22,6 +23,10 @@ const postUser = async (req, res) => {
         }
 
         user = new User({ name, email, password });
+
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+        // console.log('password', user.password);
         user.save();
         
         res.send('User created successfully');
