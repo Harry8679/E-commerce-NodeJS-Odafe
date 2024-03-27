@@ -29,6 +29,13 @@ const postUser = async (req, res) => {
         user.password = await bcrypt.hash(password, salt);
         // console.log('password', user.password);
         user.save();
+
+        const payload = {
+            user: {
+                id: user.id,
+            }
+        };
+        jwt.sign(payload, process.env.JWT_SECRET)
         
         res.send('User created successfully');
     } catch(error) {
