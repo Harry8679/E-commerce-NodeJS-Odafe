@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const home = (req, res) => {
     res.send('Hello from Controller');
