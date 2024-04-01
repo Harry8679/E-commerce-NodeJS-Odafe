@@ -35,9 +35,12 @@ const postUser = async (req, res) => {
                 id: user.id,
             }
         };
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 * 24 });
+        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 * 24 }, (err, token) => {
+            if (err) throw err;
+            res.json({ token });
+        });
         
-        res.send('User created successfully');
+        // res.send('User created successfully');
     } catch(error) {
         console.log(error);
     }
