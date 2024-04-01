@@ -1,10 +1,10 @@
 const express = require('express');
-const { product, create } = require('../controllers/product.controller');
+const { product, create, getAll } = require('../controllers/product.controller');
 const authMiddleware = require('../middlewares/authorization.middleware');
 const { check } = require('express-validator');
 const router = express.Router();
 
-router.get('/', product);
+router.get('/:id', product);
 router.post('/', [
     authMiddleware,
     [
@@ -15,5 +15,6 @@ router.post('/', [
         check('quantity', 'Quantity is required').not().isEmpty(),
     ]
 ], create);
+router.get('/', getAll);
 
 module.exports = router;

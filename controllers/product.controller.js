@@ -5,6 +5,7 @@ const product = (req, res) => {
     res.send('Home Page Product');
 };
 
+/* ------------- Creat a new Product ------------- */
 const create = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -25,4 +26,15 @@ const create = async (req, res) => {
     }
 }
 
-module.exports = { product, create };
+/* ------------- Get All Products ------------- */
+const getAll = async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.json(products);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
+module.exports = { product, create, getAll };
