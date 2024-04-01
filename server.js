@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/user.route');
 const productRoutes = require('./routes/product.route');
+const authRoutes = require('./routes/auth.route');
 
 connectDB();
 
@@ -12,6 +13,7 @@ dotenv.config();
 app.use(express.json());
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 const port = process.env.PORT || 5800;
 
